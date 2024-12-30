@@ -6,3 +6,6 @@ export * from "@/shared/components/ui/input/SignInput";
 export * from "@/shared/components/ui/searchBar/SearchBar";
 
 export * from "@/shared/components/ui/editor/ClientEditor";
+
+export * from "@/shared/components/ui/pagination/ClientPagination";
+export * from "@/shared/components/ui/pagination/ServerPagination";

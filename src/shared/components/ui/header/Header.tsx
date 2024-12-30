@@ -15,6 +15,9 @@ import Logout from "/public/svg/signout.svg";
 import My from "/public/svg/my.svg";
 
 import HeaderContent from "@/shared/components/consts/HeaderContent.json";
+import { user_logout } from "@/shared/components/ui/header/api/logout.action";
+
+const imageList = [My, Alumni, Logout];
 
 function Header() {
   const router = useRouter();
@@ -39,8 +42,26 @@ function Header() {
     router.push(`${url}`);
   };
 
+  const onClickLogout = () => {
+    user_logout();
+    alert("로그아웃하였습니다.");
+    setIsProfileClicked(false);
+    router.push("/");
+  };
+
+  const onClickMy = () => {
+    router.push("/my");
+    setIsProfileClicked(false);
+  };
+
+  const onClickPostList = () => {
+    router.push("/post");
+    setIsProfileClicked(false);
+  };
+
+  const ClickHandlerList = [onClickMy, onClickPostList, onClickLogout];
+
   useEffect(() => {
-    console.log(isProfileClicked);
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
@@ -125,15 +146,16 @@ function Header() {
           isProfileClicked
             ? "max-w-40  min-w-40 opacity-100"
             : "max-w-0  min-w-0 opacity-0"
-        } h-screen flex flex-col justify-start items-center rounded-l-3xl shadow-lg ease-in-out duration-300 bg-gradient-to-l from-[#D3CCE3] to-[#E9E4F0]`}
+        } h-screen flex flex-col justify-start items-center rounded-l-3xl shadow-lg ease-in-out gap-10 duration-300 bg-gradient-to-l from-[#D3CCE3] to-[#E9E4F0]`}
       >
         {HeaderContent.map((item, key) => {
           return (
             <div
-              className="px-2 py-1 w-full h-12 flex justify-start items-center rounded-xl hover:bg-sky-100 duration-300"
+              className="px-2 py-1 w-full h-16 flex justify-start items-center rounded-xl hover:bg-sky-100 duration-300"
               key={key}
+              onClick={ClickHandlerList[key] ?? undefined}
             >
-              <Image src={Logout} alt="Logout" width={32} height={32} />
+              <Image src={imageList[key]} alt="Logout" width={32} height={32} />
             </div>
           );
         })}
