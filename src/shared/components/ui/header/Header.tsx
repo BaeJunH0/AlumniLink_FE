@@ -97,26 +97,42 @@ function Header() {
           onMouseLeave={() => setIsHover([false, false, false])}
           onClick={() => onClickRouter("/post")}
         >
-          {isHover[0] && (
-            <Image src={Alumni} alt="Alumni" width={24} height={24} />
-          )}
-          Alumni
+          <Image
+            src={Alumni}
+            alt="Alumni"
+            width={24}
+            height={24}
+            className={`text-black duration-300 ${
+              isHover[0] ? "opacity-100" : "opacity-0"
+            }`}
+          />
+          <span
+            className={`font-studioSans font-normal text-base text-black duration-300 ${
+              isHover[0] ? "translate-x-1" : "-translate-x-4"
+            }`}
+          >
+            Alumni
+          </span>
         </li>
         <li
-          className="py-5 w-1/3 flex justify-center items-center duration-300 gap-2 overflow-hidden hover:shadow-xl rounded-lg"
+          className="py-5 w-1/3 flex justify-center items-center duration-300 transition-all overflow-hidden hover:shadow-xl rounded-lg"
           onMouseEnter={() => setIsHover([false, true, false])}
           onMouseLeave={() => setIsHover([false, false, false])}
         >
-          {isHover[1] && (
-            <Image
-              src={Question}
-              alt="Alumni"
-              width={32}
-              height={32}
-              className="text-black"
-            />
-          )}
-          <span className="font-studioSans font-normal text-base text-black">
+          <Image
+            src={Question}
+            alt="Alumni"
+            width={32}
+            height={32}
+            className={`text-black duration-300 ${
+              isHover[1] ? "opacity-100" : "opacity-0"
+            }`}
+          />
+          <span
+            className={`font-studioSans font-normal text-base text-black duration-300 ${
+              isHover[1] ? "translate-x-1" : "-translate-x-4"
+            }`}
+          >
             QnA
           </span>
         </li>
@@ -151,11 +167,14 @@ function Header() {
         {HeaderContent.map((item, key) => {
           return (
             <div
-              className="px-2 py-1 w-full h-16 flex justify-start items-center rounded-xl hover:bg-sky-100 duration-300"
+              className="px-2 py-1 w-full h-16 flex justify-start items-center rounded-xl hover:bg-sky-100 duration-300 group gap-2"
               key={key}
               onClick={ClickHandlerList[key] ?? undefined}
             >
               <Image src={imageList[key]} alt="Logout" width={32} height={32} />
+              <span className="group-hover:opacity-100 opacity-0 duration-300 ease-in-out font-studioSans font-semibold text-sm text-black">
+                {item.content}
+              </span>
             </div>
           );
         })}
