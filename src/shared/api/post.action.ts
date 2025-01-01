@@ -34,37 +34,10 @@ export const get_comment = async ({ id }: { id: number }) => {
 export const get_single_post = async ({ id }: { id: number }) => {
   try {
     const res = await AlumniLinkAPI.get(`/posts/${id}`);
-    if (res.status === 200) {
-      return res.data as T_SinglePost_Type;
-    } else {
-      return false;
-    }
+    return res.data as T_SinglePost_Type;
   } catch (err: any) {
     if (err.status === 404) {
       return 404; // no posts in post list.
-    }
-  }
-};
-
-export const post_my_posting = async ({ body, tag, title }: T_Posting_Type) => {
-  try {
-    const request = {
-      title: title,
-      body: body,
-      tag: tag,
-    };
-    const res = await AlumniLinkAPI.post("/posts", request);
-    if (res.status === 200) {
-      // Success
-      return res.data;
-    } else {
-      return false;
-    }
-  } catch (err: any) {
-    if (err.status === 404) {
-      return 404; // Bearer Token not valid
-    } else if (err.status === 500) {
-      return 500; // Parameter is not valid;
     }
   }
 };

@@ -1,7 +1,7 @@
 import axios, { HeadersDefaults } from "axios";
 import Cookies from "js-cookie";
 
-const PUBLIC_API = process.env.NEXT_APP_PUBLIC_KEY as string;
+const PUBLIC_API = process.env.NEXT_PUBLIC_KEY as string;
 
 export const AlumniLinkAPI = axios.create({
   baseURL: PUBLIC_API,
@@ -26,8 +26,9 @@ let failedQueue: any[] = [];
 AlumniLinkAPI.interceptors.request.use(
   (config) => {
     const token = Cookies.get("access-token") ?? null;
+    const BearerToken = "Bearer " + token;
     if (token && config.headers) {
-      config.headers.Authorization = token;
+      config.headers.Authorization = BearerToken;
     }
     return config;
   },
