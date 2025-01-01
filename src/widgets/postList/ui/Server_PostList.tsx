@@ -20,13 +20,6 @@ async function Server_PostList() {
               />
             );
           })}
-        <Client_ListCard
-          id={1}
-          body={"여기 졸업해보셨나요?"}
-          nickname={"sunwoo An"}
-          title={"졸업해보셨나요"}
-          isModified={"2024-12-30T18:24:28.866Z"}
-        />
       </div>
     </div>
   );
