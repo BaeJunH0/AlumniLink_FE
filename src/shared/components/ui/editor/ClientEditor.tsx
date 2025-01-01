@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  useCallback,
-  useEffect,
-  type Dispatch,
-  type SetStateAction,
-} from "react";
+import { useEffect, type Dispatch, type SetStateAction } from "react";
 
 import "@blocknote/core/fonts/inter.css";
 import { useCreateBlockNote } from "@blocknote/react";
@@ -46,6 +41,16 @@ export default function Editor({ type, setContent, value }: T_Editor) {
         editor={editor}
         editable={false}
         content={value}
+        theme={lightDefaultTheme}
+      />
+    );
+  } else if (type && value) {
+    return (
+      <BlockNoteView
+        editor={editor}
+        editable={true}
+        content={value}
+        onChange={onChange}
         theme={lightDefaultTheme}
       />
     );
