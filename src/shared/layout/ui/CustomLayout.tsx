@@ -14,7 +14,7 @@ function CustomLayout({ isHeader, children }: T_CustomLayout) {
       }`}
     >
       {isHeader && <Header />}
-      {children}
+      <div className="px-32 py-10">{children}</div>
     </div>
   );
 }
