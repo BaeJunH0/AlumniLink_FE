@@ -2,8 +2,6 @@
 
 import React, { useState } from "react";
 
-import { post_my_posting } from "@/shared/api/post.action";
-
 type T_EditHamburger = {
   onSubmitPost: () => void;
 };
@@ -12,7 +10,7 @@ function EditHamburger({ onSubmitPost }: T_EditHamburger) {
   const [postType, setPostType] = useState<1 | 2 | 3>(1);
 
   return (
-    <div className="sticky top-32 shrink-0 px-8 py-8 min-w-80 min-h-96 flex flex-col justify-start items-start gap-4 rounded-xl shadow-lg">
+    <div className="sticky top-32 shrink-0 px-8 py-8 min-w-80 min-h-96 flex flex-col justify-start items-start gap-4 rounded-xl shadow-lg ">
       <p className="font-bold font-studioSans text-center text-xl text-black">
         게시판 설정
       </p>
