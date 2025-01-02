@@ -28,7 +28,8 @@ function Header() {
 
   const [isProfileClicked, setIsProfileClicked] = useState<boolean>(false);
 
-  const [isHover, setIsHover] = useState<boolean[]>([false, false, false]);
+  const [isLogoHover, setIsLogoHover] = useState<boolean>(false);
+  const [isHover, setIsHover] = useState<boolean[]>([false, false]);
 
   const onClickProfile = () => {
     if (isProfileClicked) {
@@ -83,18 +84,52 @@ function Header() {
         }
       )}
     >
-      <div className="w-1/3 h-full flex justify-start items-center">
-        <Link href={"/"}>
-          <span className="font-studioSans font-extrabold text-4xl text-black cursor-pointer">
-            AL
+      <div className="w-1/3 h-full flex justify-center items-center">
+        <div
+          onClick={() => onClickRouter("/")}
+          className="px-5 py-3 w-fit h-fit cursor-pointer flex justify-center items-center duration-300 transition-all rounded-lg hover:shadow-lg"
+          onMouseEnter={() => setIsLogoHover(true)}
+          onMouseLeave={() => setIsLogoHover(false)}
+        >
+          <span
+            className={`font-studioSans font-extrabold text-4xl text-black duration-300 ease-out ${
+              isLogoHover && " text-blue-500"
+            }`}
+          >
+            A
           </span>
-        </Link>
+          <span
+            className={`font-studioSans font-semibold text-xl text-black duration-300 ease-out ${
+              isLogoHover
+                ? "opacity-100 translate-y-1"
+                : "opacity-0 translate-y-5"
+            }`}
+          >
+            lumni
+          </span>
+          <span
+            className={`font-studioSans font-extrabold text-4xl text-black duration-300 ease-out ${
+              isLogoHover ? "translate-x-0 text-blue-500" : "-translate-x-12"
+            }`}
+          >
+            L
+          </span>
+          <span
+            className={`font-studioSans font-semibold text-xl text-black duration-300 ease-out ${
+              isLogoHover
+                ? "opacity-100 translate-y-1"
+                : "opacity-0 translate-y-5"
+            }`}
+          >
+            ink
+          </span>
+        </div>
       </div>
-      <ul className="w-1/3 flex justify-evenly items-center">
+      <ul className="w-1/3 flex justify-center items-center gap-8">
         <li
           className="py-5 w-1/3 flex justify-center items-center duration-300 gap-2 overflow-hidden hover:shadow-xl rounded-lg"
-          onMouseEnter={() => setIsHover([true, false, false])}
-          onMouseLeave={() => setIsHover([false, false, false])}
+          onMouseEnter={() => setIsHover([true, false])}
+          onMouseLeave={() => setIsHover([false, false])}
           onClick={() => onClickRouter("/post")}
         >
           <Image
@@ -116,8 +151,8 @@ function Header() {
         </li>
         <li
           className="py-5 w-1/3 flex justify-center items-center duration-300 transition-all overflow-hidden hover:shadow-xl rounded-lg"
-          onMouseEnter={() => setIsHover([false, true, false])}
-          onMouseLeave={() => setIsHover([false, false, false])}
+          onMouseEnter={() => setIsHover([false, true])}
+          onMouseLeave={() => setIsHover([false, false])}
         >
           <Image
             src={Question}
@@ -133,12 +168,7 @@ function Header() {
               isHover[1] ? "translate-x-1" : "-translate-x-4"
             }`}
           >
-            QnA
-          </span>
-        </li>
-        <li className="py-5 w-1/3 flex justify-center items-center duration-300 gap-2 overflow-hidden hover:shadow-xl rounded-lg">
-          <span className="font-studioSans font-normal text-base text-black">
-            Information
+            Project
           </span>
         </li>
       </ul>
